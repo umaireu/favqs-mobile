@@ -29,6 +29,7 @@ export const useHttp = <T, P = void>({
         setData(response);
       } catch (err: unknown) {
         setError(err as Error);
+        return null;
       } finally {
         setLoading(false);
       }

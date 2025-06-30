@@ -11,6 +11,7 @@ import {
 } from '../../components';
 import { theme } from '../../theme';
 import { useHttp } from '../../hooks/useHttp';
+import { useDebounce } from '../../hooks/useDebounce';
 import { ErrorCard } from '../../components/error-card/error-card';
 import { searchQuotes as searchQuotesService } from '../../services/favq.service';
 import { useLikeUnLikeQuote } from '../../hooks/useLikeUnLikeQuote';
@@ -32,6 +33,8 @@ export const Search = () => {
     hasSearched: false,
   });
   const { handleLikeQuote } = useLikeUnLikeQuote({});
+
+  const debouncedSearchQuery = useDebounce(state.searchQuery, 1000);
 
   const performSearch = useCallback(
     async (query: string) => {
@@ -64,12 +67,8 @@ export const Search = () => {
   }, [data]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      performSearch(state.searchQuery);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [state.searchQuery, performSearch]);
+    performSearch(debouncedSearchQuery);
+  }, [debouncedSearchQuery, performSearch]);
 
   const handleClearSearch = useCallback(() => {
     setState(prevState => ({
@@ -88,6 +87,15 @@ export const Search = () => {
     }));
   }, []);
 
+  const renderItem = useCallback(
+    ({ item }: { item: Quote }) => (
+      <View style={styles.quoteItem}>
+        <QuoteCard quote={item} onLike={handleLikeQuote} />
+      </View>
+    ),
+    [handleLikeQuote],
+  );
+
   const renderSearchContent = () => {
     if (loading) {
       return <Loading text={`Searching for ${state.searchQuery}...`} />;
@@ -99,11 +107,7 @@ export const Search = () => {
       return (
         <List
           data={state.searchResults}
-          renderItem={({ item }) => (
-            <View style={styles.quoteItem}>
-              <QuoteCard quote={item} onLike={handleLikeQuote} />
-            </View>
-          )}
+          renderItem={renderItem}
           keyExtractor={(item: Quote) => item.id.toString()}
           emptyTitle="No quotes found"
           emptySubtitle={`No results found for "${state.searchQuery}". Try different keywords or check spelling.`}

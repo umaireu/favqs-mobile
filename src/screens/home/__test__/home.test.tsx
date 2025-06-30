@@ -41,8 +41,6 @@ describe('home screen', () => {
       handleUnLikeQuote: jest.fn(),
       saveFavoriteQuoteLoading: false,
       deleteFavoriteQuoteLoading: false,
-      saveFavoriteQuoteError: null,
-      deleteFavoriteQuoteError: null,
     });
   });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { View, StyleSheet, FlatList, Text, ListRenderItem } from 'react-native';
 import { theme } from '../../theme';
 
@@ -17,11 +17,14 @@ export const List = <T,>({
   emptyTitle = 'No items yet',
   emptySubtitle = 'Start exploring to find some items',
 }: ListProps<T>) => {
-  const renderEmptyState = () => (
-    <View style={styles.emptyState}>
-      <Text style={styles.emptyText}>{emptyTitle}</Text>
-      <Text style={styles.emptySubtext}>{emptySubtitle}</Text>
-    </View>
+  const renderEmptyState = useCallback(
+    () => (
+      <View style={styles.emptyState}>
+        <Text style={styles.emptyText}>{emptyTitle}</Text>
+        <Text style={styles.emptySubtext}>{emptySubtitle}</Text>
+      </View>
+    ),
+    [emptyTitle, emptySubtitle],
   );
 
   return (

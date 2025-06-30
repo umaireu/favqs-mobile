@@ -15,16 +15,12 @@ export const Favorites = () => {
   });
   const [favQuotes, setFavQuotes] = useState<FavoriteQuote[]>([]);
 
-  const filteredFavQuotes = useCallback(
-    (quote: Quote) => {
-      const quotes = favQuotes.filter(item => item.quote.id !== quote.id);
-      setFavQuotes(quotes);
-    },
-    [favQuotes],
-  );
+  const onSuccessUnLike = useCallback((quote: Quote) => {
+    setFavQuotes(prev => prev.filter(item => item.quote.id !== quote.id));
+  }, []);
 
   const { handleUnLikeQuote } = useLikeUnLikeQuote({
-    onSuccessUnLike: filteredFavQuotes,
+    onSuccessUnLike,
   });
 
   useEffect(() => {
@@ -36,24 +32,28 @@ export const Favorites = () => {
   useFocusEffect(
     useCallback(() => {
       makeHttpRequest();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
+    }, [makeHttpRequest]),
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: FavoriteQuote }) => (
+      <View style={styles.quoteItem}>
+        <QuoteCard
+          quote={item.quote}
+          isLiked={true}
+          onUnlike={handleUnLikeQuote}
+        />
+      </View>
+    ),
+    [handleUnLikeQuote],
   );
 
   return (
     <Container title="Favorite Quotes" loading={loading} error={error}>
       <List
         data={favQuotes}
-        renderItem={({ item }) => (
-          <View style={styles.quoteItem}>
-            <QuoteCard
-              quote={item.quote}
-              isLiked={true}
-              onUnlike={handleUnLikeQuote}
-            />
-          </View>
-        )}
-        keyExtractor={(item: FavoriteQuote) => item.quote.id.toString()}
+        renderItem={renderItem}
+        keyExtractor={item => item.quote.id.toString()}
         emptyTitle="No favorite quotes yet"
         emptySubtitle="Start adding quotes to your favorites from the Home screen"
       />

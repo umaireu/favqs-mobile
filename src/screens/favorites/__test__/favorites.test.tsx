@@ -61,8 +61,6 @@ describe('favorites screen', () => {
       handleUnLikeQuote: mockHandleUnLikeQuote,
       saveFavoriteQuoteLoading: false,
       deleteFavoriteQuoteLoading: false,
-      saveFavoriteQuoteError: null,
-      deleteFavoriteQuoteError: null,
     });
   });
 

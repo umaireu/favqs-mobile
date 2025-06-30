@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { theme } from '../../theme';
 import { Container, Button, QuoteCard } from '../../components';
@@ -11,10 +12,12 @@ export const Home = () => {
     autoExecute: true,
   });
 
+  const onSuccessLike = useCallback(() => {
+    refetch();
+  }, [refetch]);
+
   const { handleLikeQuote, saveFavoriteQuoteLoading } = useLikeUnLikeQuote({
-    onSuccessLike: () => {
-      refetch();
-    },
+    onSuccessLike,
   });
 
   return (

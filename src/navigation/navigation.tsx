@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar, View, StyleSheet } from 'react-native';
@@ -11,10 +12,13 @@ import { Icon } from '../components';
 const BottomTabs = createBottomTabNavigator();
 
 const BottomTabsNavigator = () => {
-  const renderTabIcon = (iconName: any, focused: boolean) => (
-    <View style={styles.tabItem}>
-      <Icon iconName={iconName} focused={focused} />
-    </View>
+  const renderTabIcon = useCallback(
+    (iconName: string, focused: boolean) => (
+      <View style={styles.tabItem}>
+        <Icon iconName={iconName} focused={focused} />
+      </View>
+    ),
+    [],
   );
 
   return (
