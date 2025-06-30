@@ -108,7 +108,7 @@ npm run ios
 ```
 src/
 ├── components/         # Reusable UI components
-├── screens/            # Screen components
+├── screens/            # Screen components (e.g Home, Favorites)
 ├── navigation/         # Navigation configuration
 ├── services/           # API and storage services
 ├── hooks/              # Custom hooks
@@ -149,3 +149,16 @@ If you encounter issues:
 4. Clean and rebuild:
    - Android: `cd android && ./gradlew clean && cd ..`
    - iOS: `cd ios && xcodebuild clean && cd ..`
+
+## Screenshots
+<img width="349" alt="Screenshot 2025-06-30 at 18 52 53" src="https://github.com/user-attachments/assets/f8d3d002-22cb-4c43-82e9-4b6b5026ed28" />
+
+
+<img width="349" alt="Screenshot 2025-06-30 at 18 53 01" src="https://github.com/user-attachments/assets/f5359060-8515-42f0-9fbf-ad9859b07a8c" />
+
+<img width="349" alt="Screenshot 2025-06-30 at 18 53 11" src="https://github.com/user-attachments/assets/0f422505-d26b-473a-979f-d18d793b898c" />
+
+<img width="349" alt="Screenshot 2025-06-30 at 18 53 41" src="https://github.com/user-attachments/assets/1f2e368f-9652-4bda-90e6-60002ffab6a5" />
+
+<img width="349" alt="Screenshot 2025-06-30 at 18 53 51" src="https://github.com/user-attachments/assets/763a3688-8175-4f88-a4a0-7303f467039c" />
+
