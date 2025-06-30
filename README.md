@@ -4,6 +4,7 @@ A React Native mobile application for browsing and managing favorite quotes usin
 
 ![rn-mobile](https://github.com/user-attachments/assets/16b6c059-1623-440d-b953-59d8f123f47b)
 
+For test purpose can download APK from here: [Android (APK)](https://www.upload-apk.com/en/jAmDhtOtaITBxIf)
 ## Overview
 
 FavQ Mobile is a cross-platform mobile app that allows users to:
