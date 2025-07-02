@@ -7,7 +7,16 @@ import {
   FAVQ_EXTERNAL_API_BASE_URL,
   FAVQ_INTERNAL_API_BASE_URL,
   FAVQ_EXTERNAL_API_KEY,
+  ENABLE_NETWORK_LOGGING,
 } from '@env';
+
+// Network logging for development
+import { startNetworkLogging } from 'react-native-network-logger';
+
+// Start network logging in development
+if (ENABLE_NETWORK_LOGGING) {
+  startNetworkLogging();
+}
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -20,7 +29,6 @@ function createHttpClient() {
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
     },
   });
 

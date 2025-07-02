@@ -9,11 +9,6 @@ export interface Quote {
   downvotes_count: number;
   dialogue: boolean;
   private: boolean;
-  user_details?: {
-    favorite: boolean;
-    upvote: boolean;
-    downvote: boolean;
-  };
 }
 
 export interface QuoteOfTheDayResponse {

@@ -58,9 +58,9 @@ export const saveFavoriteQuote = async (data: FavoriteQuote) => {
   } else {
     await httpClient.post<FavoriteQuote>(
       API_ENDPOINTS.INTERNAL_FAVQ_API.SAVE_FAVORITE_QUOTE,
+      data,
       {
         isExternalApi: false,
-        data,
       },
     );
   }
