@@ -44,7 +44,7 @@ export const useHttp = <T, P = void>({
   }, []);
 
   const refetch = useCallback(async () => {
-    makeHttpRequest();
+    await makeHttpRequest();
   }, [makeHttpRequest]);
 
   useEffect(() => {
